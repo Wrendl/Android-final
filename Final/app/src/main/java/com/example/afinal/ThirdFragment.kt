@@ -62,15 +62,16 @@ class ThirdFragment : Fragment() {
 
         if (category != null) {
             if (country != null) {
-                apiService.getNews(category,country).enqueue(object : Callback<List<News>> {
-                    override fun onFailure(call: Call<List<News>>, t: Throwable) {
+                apiService.getNews(category,country).enqueue(object : Callback<InitialObject> {
+                    override fun onFailure(call: Call<InitialObject>, t: Throwable) {
                         t.message?.let { Log.e("Error", it) }
                     }
 
-                    override fun onResponse(call: Call<List<News>>, response: Response<List<News>>) {
-                        Log.e("Response size: ", response.body()!!.size.toString() + "")
-                        list2.addAll(response.body()!!)
-                        first.text = list2[0].title
+                    override fun onResponse(call: Call<InitialObject>, response: Response<InitialObject>) {
+//                        Log.e("gdgdfg","fsdfsds")
+                        Log.e("Response size: ", response.body()?.status.toString())
+//                        list2.addAll(response.body()!!)
+//                        first.text = list2[0].title
 //                        post_list_recycler.layoutManager = LinearLayoutManager(activity)
 //                        post_list_recycler.adapter = context?.let { PostListAdapter(list1, it) }
                     }
@@ -78,7 +79,7 @@ class ThirdFragment : Fragment() {
             }
         }
 
-        first.text = country
-        second.text = category
+//        first.text = country
+//        second.text = category
     }
 }
