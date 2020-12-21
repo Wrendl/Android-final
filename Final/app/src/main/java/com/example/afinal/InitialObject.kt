@@ -8,14 +8,14 @@ data class InitialObject(
     @SerializedName("status")
     val status: String?,
     @SerializedName("totalResults")
-    val totalResults: Int?,
-    @SerializedName("articles")
-    val list: ArrayList<News>?
+    val totalResults: Int?
+//    @SerializedName("articles")
+//    val list: ArrayList<News>?
 ): Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.readInt(),
-        parcel.readArrayList() as ArrayList<News>?
+        parcel.readInt()
+//        parcel.readArrayList() as ArrayList<News>?
     ) {
     }
 
@@ -24,7 +24,7 @@ data class InitialObject(
         if (totalResults != null) {
             parcel.writeInt(totalResults)
         }
-        parcel.writeArray(arrayOf(list))
+//        parcel.writeArray(arrayOf(list))
     }
 
     override fun describeContents(): Int {
@@ -40,8 +40,4 @@ data class InitialObject(
             return arrayOfNulls(size)
         }
     }
-}
-
-private fun Any.readArrayList(news: News.CREATOR) {
-
 }
